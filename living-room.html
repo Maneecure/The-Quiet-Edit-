@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Living Room — The Quiet Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&family=Italiana&family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream: #FAF7F2; --warm-white: #F5F0E8; --blush: #D9A89C;
+    --blush-deep: #C4806F; --blush-pale: #EDD9D3; --sage: #4A5C4D;
+    --sage-mid: #7A9178; --sage-pale: #C4D4C0; --camel: #C4956A;
+    --bark: #2E2018; --stone: #9E9080; --sand: #DDD0BC; --light-sand: #EDE5D4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--bark); font-family: 'DM Sans', sans-serif; font-weight: 300; letter-spacing: 0.01em; overflow-x: hidden; }
+  .announcement { background: var(--sage); color: var(--sage-pale); text-align: center; padding: 10px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; }
+  nav { position: sticky; top: 0; z-index: 500; background: rgba(250,247,242,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sand); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 0 60px; height: 64px; }
+  .logo { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bark); text-decoration: none; flex-shrink: 0; }
+  .nav-links { display: flex; list-style: none; height: 100%; }
+  .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+  .nav-links > li > a { display: flex; align-items: center; height: 100%; padding: 0 22px; gap: 5px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--bark); font-weight: 300; transition: color 0.25s; }
+  .nav-links > li > a:hover { color: var(--sage); }
+  .caret { font-size: 8px; opacity: 0.45; transition: transform 0.25s; }
+  .nav-links > li:hover > a .caret { transform: rotate(180deg); }
+  .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--cream); border: 1px solid var(--sand); border-top: 2px solid var(--sage); padding: 28px 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; min-width: 190px; box-shadow: 0 20px 40px rgba(46,32,24,0.07); }
+  .nav-links > li:hover .dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+  .dropdown-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--light-sand); }
+  .dropdown ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .dropdown ul li a { font-family: 'Italiana', serif; font-size: 18px; font-weight: 400; color: var(--bark); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+  .dropdown ul li a::before { content: '—'; font-size: 9px; font-family: 'DM Sans', sans-serif; color: var(--sand); transition: color 0.2s; }
+  .dropdown ul li a:hover { color: var(--sage); }
+  .dropdown ul li a:hover::before { color: var(--sage); }
+  .nav-right { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
+  .nav-right a { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bark); text-decoration: none; transition: color 0.25s; font-weight: 300; }
+  .nav-right a:hover { color: var(--sage); }
+
+
+  footer { background: var(--bark); padding: 72px 60px 40px; color: var(--cream); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-logo { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+  .footer-tagline { font-size: 12px; line-height: 1.9; color: rgba(250,247,242,0.4); max-width: 230px; margin-bottom: 28px; font-weight: 300; }
+  .footer-socials { display: flex; gap: 18px; }
+  .footer-socials a { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.35); text-decoration: none; transition: color 0.3s; }
+  .footer-socials a:hover { color: var(--blush); }
+  .footer-col-title { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(250,247,242,0.07); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 12px; color: rgba(250,247,242,0.45); text-decoration: none; transition: color 0.25s; font-weight: 300; }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom { border-top: 1px solid rgba(250,247,242,0.07); padding-top: 26px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 10px; color: rgba(250,247,242,0.22); letter-spacing: 0.06em; }
+  .footer-legal { display: flex; gap: 22px; }
+  .footer-legal a { font-size: 10px; color: rgba(250,247,242,0.22); text-decoration: none; transition: color 0.3s; }
+  .footer-legal a:hover { color: rgba(250,247,242,0.55); }
+
+
+  .page-header { padding: 60px 60px 40px; border-bottom: 1px solid var(--sand); }
+  .page-breadcrumb { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone); margin-bottom: 14px; }
+  .page-breadcrumb a { color: var(--stone); text-decoration: none; }
+  .page-breadcrumb a:hover { color: var(--sage); }
+  .page-title { font-family: 'Bodoni Moda', serif; font-size: clamp(32px, 4vw, 56px); font-weight: 300; letter-spacing: 0.04em; color: var(--bark); margin-bottom: 12px; }
+  .page-desc { font-size: 13px; line-height: 2; color: var(--stone); max-width: 520px; font-weight: 300; }
+  .page-count { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); margin-top: 20px; }
+  .product-section { padding: 60px 60px 80px; }
+  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .product-card { background: var(--cream); position: relative; cursor: pointer; }
+  .product-image { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--light-sand); }
+  .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .product-card:hover .product-image img { transform: scale(1.05); }
+  .product-tag { position: absolute; top: 14px; left: 14px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 10px; font-weight: 300; z-index: 2; }
+  .tag-sage { background: var(--sage); color: var(--sage-pale); }
+  .tag-blush { background: var(--blush-deep); color: #fff; }
+  .tag-camel { background: var(--camel); color: #fff; }
+  .product-brand { position: absolute; top: 14px; right: 14px; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(250,247,242,0.88); color: var(--stone); padding: 4px 8px; }
+  .product-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 18px; opacity: 0; transition: opacity 0.35s; background: rgba(46,32,24,0.1); }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .btn-shop { display: inline-block; width: 100%; text-align: center; padding: 13px 16px; background: var(--sage); color: var(--sage-pale); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: background 0.3s; }
+  .btn-shop:hover { background: var(--bark); }
+  .product-info { padding: 16px 16px 20px; border-bottom: 1px solid var(--light-sand); }
+  .product-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+  .product-source { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-mid); font-weight: 300; }
+  .product-price { font-size: 12px; color: var(--camel); letter-spacing: 0.02em; }
+  .product-name { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; letter-spacing: 0.04em; color: var(--bark); line-height: 1.4; }
+  .product-note { font-size: 11px; color: var(--stone); margin-top: 4px; line-height: 1.6; font-weight: 300; }
+
+</style>
+</head>
+<body>
+
+<div class="announcement">New arrivals every Thursday — Curated for the considered woman</div>
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li>
+        <a href="index.html">Homeware <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <p class="dropdown-label">Homeware</p>
+          <ul>
+            <li><a href="tableware.html">Tableware</a></li>
+            <li><a href="linens.html">Linens</a></li>
+            <li><a href="kids.html">Kids Room</a></li>
+            <li><a href="living-room.html">Living Room</a></li>
+            <li><a href="kitchen.html">Kitchen</a></li>
+            <li><a href="lighting.html">Lighting</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a href="#">Fashion <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <p class="dropdown-label">Fashion</p>
+          <ul>
+            <li><a href="#">Coats</a></li>
+            <li><a href="#">Skirts</a></li>
+            <li><a href="#">Shorts</a></li>
+            <li><a href="#">Shirts</a></li>
+            <li><a href="#">Dresses</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <a href="index.html" class="logo">The Quiet Edit</a>
+    <div class="nav-right">
+      <a href="#">Search</a>
+      <a href="#">Saved</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <p class="page-breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Living Room</p>
+  <h1 class="page-title">Living Room</h1>
+  <p class="page-desc">Furniture and objects chosen for the long-term. Things that age well and anchor a room.</p>
+  <p class="page-count">8 pieces</p>
+</div>
+<section class="product-section">
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="Rivva Wedge Chaise Sectional Sofa" loading="lazy"/>
+        <span class="product-tag tag-sage">Editor's Pick</span>
+        <span class="product-brand">Orange Tree</span>
+        <div class="product-overlay">
+          <a href="https://www.orangetree.in/products/rivva-2-piece-wedge-chaise-sectional-sofa" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Seating</span>
+          <span class="product-price">₹1,85,999</span>
+        </div>
+        <p class="product-name">Rivva Wedge Chaise Sectional Sofa</p>
+        <p class="product-note">Curved L-shape in plush upholstery. Mango wood base. Made for lingering.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1567016432779-094069958ea5?w=600&q=80" alt="Le Dame 3-Seater Sofa" loading="lazy"/>
+        
+        <span class="product-brand">Orange Tree</span>
+        <div class="product-overlay">
+          <a href="https://www.orangetree.in/products/le-dame-3-seater-sofa" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Seating</span>
+          <span class="product-price">₹2,14,199</span>
+        </div>
+        <p class="product-name">Le Dame 3-Seater Sofa</p>
+        <p class="product-note">Upholstered in warm brown with soft curved arms. Solid wood Ipiano base.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80" alt="Mahama Lounge Chair" loading="lazy"/>
+        
+        <span class="product-brand">Orange Tree</span>
+        <div class="product-overlay">
+          <a href="https://www.orangetree.in/products/mahama-lounge-chair" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Seating</span>
+          <span class="product-price">₹ on site</span>
+        </div>
+        <p class="product-name">Mahama Lounge Chair</p>
+        <p class="product-note">Mango wood in ebony finish, woven seat. Strong, minimal, handcrafted.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="The Solace Mirror" loading="lazy"/>
+        <span class="product-tag tag-blush">New In</span>
+        <span class="product-brand">Hello December</span>
+        <div class="product-overlay">
+          <a href="https://lovehellodecember.com/collections/new-mirrors/products/the-solace-mirror" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Décor</span>
+          <span class="product-price">₹ on site</span>
+        </div>
+        <p class="product-name">The Solace Mirror</p>
+        <p class="product-note">A piece that earns its wall. Quietly architectural.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://fleck.co.in/cdn/shop/files/FlutedTables_EmpradorMarble-7.jpg?v=1773122783" alt="Fluted Table — Emperador Marble" loading="lazy"/>
+        <span class="product-tag tag-sage">Editor's Pick</span>
+        <span class="product-brand">Fleck</span>
+        <div class="product-overlay">
+          <a href="https://fleck.co.in/products/fluted-tables?variant=42598194839639" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Tables</span>
+          <span class="product-price">₹19,299</span>
+        </div>
+        <p class="product-name">Fluted Table — Emperador Marble</p>
+        <p class="product-note">Chocolate-brown Emperador marble, each top unique. Fluted mango wood base.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=600&q=80" alt="Andaman Katchal Shelving Unit" loading="lazy"/>
+        
+        <span class="product-brand">Orange Tree</span>
+        <div class="product-overlay">
+          <a href="https://www.orangetree.in/products/andaman-katchall-shelving-unit" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Storage</span>
+          <span class="product-price">₹92,999</span>
+        </div>
+        <p class="product-name">Andaman Katchal Shelving Unit</p>
+        <p class="product-note">Acacia wood + rattan cane webbing. A bookshelf that holds character too.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.ellementry.com/cdn/shop/products/wdfna2797_00_1.jpg?v=1706522802" alt="Bruno Bar Trolley" loading="lazy"/>
+        
+        <span class="product-brand">Ellementry</span>
+        <div class="product-overlay">
+          <a href="https://www.ellementry.com/products/bruno-bar-trolley-wdfna2797" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Storage</span>
+          <span class="product-price">₹26,900</span>
+        </div>
+        <p class="product-name">Bruno Bar Trolley</p>
+        <p class="product-note">Two shelves, a drawer. The kind of thing that makes a room feel curated.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.ellementry.com/cdn/shop/files/01Lifestyle_9f34de6d-04a2-4680-9a36-1628b91d7f4f.jpg?v=1775728047" alt="Ljo Ceramic Planter with Stand" loading="lazy"/>
+        
+        <span class="product-brand">Ellementry</span>
+        <div class="product-overlay">
+          <a href="https://www.ellementry.com/products/ljo-ceramic-planter-with-stand-swdea2444" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Décor</span>
+          <span class="product-price">₹ on site</span>
+        </div>
+        <p class="product-name">Ljo Ceramic Planter with Stand</p>
+        <p class="product-note">Ceramic planter on a wooden stand. A living corner that breathes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">The Quiet Edit</div>
+      <p class="footer-tagline">A curated selection of objects and garments for the considered woman. Discovered with care.</p>
+      <div class="footer-socials"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Newsletter</a></div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Homeware</p><ul>
+      <li><a href="tableware.html">Tableware</a></li>
+      <li><a href="linens.html">Linens</a></li>
+      <li><a href="kids.html">Kids Room</a></li>
+      <li><a href="living-room.html">Living Room</a></li>
+      <li><a href="kitchen.html">Kitchen</a></li>
+      <li><a href="lighting.html">Lighting</a></li>
+    </ul></div>
+    <div class="footer-col"><p class="footer-col-title">Fashion</p><ul>
+      <li><a href="#">Coats</a></li><li><a href="#">Skirts</a></li>
+      <li><a href="#">Shorts</a></li><li><a href="#">Shirts</a></li><li><a href="#">Dresses</a></li>
+    </ul></div>
+    <div class="footer-col"><p class="footer-col-title">About</p><ul>
+      <li><a href="#">Our Story</a></li><li><a href="#">How We Choose</a></li>
+      <li><a href="#">The Journal</a></li><li><a href="#">Contact</a></li>
+      <li><a href="#">Affiliate Disclosure</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 The Quiet Edit. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Affiliate Disclosure</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
