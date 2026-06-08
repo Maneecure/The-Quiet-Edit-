@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableware — The Quiet Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400&family=Italiana&family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --cream: #FAF7F2; --warm-white: #F5F0E8; --blush: #D9A89C;
+    --blush-deep: #C4806F; --blush-pale: #EDD9D3; --sage: #4A5C4D;
+    --sage-mid: #7A9178; --sage-pale: #C4D4C0; --camel: #C4956A;
+    --bark: #2E2018; --stone: #9E9080; --sand: #DDD0BC; --light-sand: #EDE5D4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--bark); font-family: 'DM Sans', sans-serif; font-weight: 300; letter-spacing: 0.01em; overflow-x: hidden; }
+  .announcement { background: var(--sage); color: var(--sage-pale); text-align: center; padding: 10px; font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; }
+  nav { position: sticky; top: 0; z-index: 500; background: rgba(250,247,242,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--sand); }
+  .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 0 60px; height: 64px; }
+  .logo { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; letter-spacing: 0.32em; text-transform: uppercase; color: var(--bark); text-decoration: none; flex-shrink: 0; }
+  .nav-links { display: flex; list-style: none; height: 100%; }
+  .nav-links > li { position: relative; height: 100%; display: flex; align-items: center; }
+  .nav-links > li > a { display: flex; align-items: center; height: 100%; padding: 0 22px; gap: 5px; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; color: var(--bark); font-weight: 300; transition: color 0.25s; }
+  .nav-links > li > a:hover { color: var(--sage); }
+  .caret { font-size: 8px; opacity: 0.45; transition: transform 0.25s; }
+  .nav-links > li:hover > a .caret { transform: rotate(180deg); }
+  .dropdown { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(8px); background: var(--cream); border: 1px solid var(--sand); border-top: 2px solid var(--sage); padding: 28px 32px; opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; min-width: 190px; box-shadow: 0 20px 40px rgba(46,32,24,0.07); }
+  .nav-links > li:hover .dropdown { opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+  .dropdown-label { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--light-sand); }
+  .dropdown ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+  .dropdown ul li a { font-family: 'Italiana', serif; font-size: 18px; font-weight: 400; color: var(--bark); text-decoration: none; transition: color 0.2s; display: flex; align-items: center; gap: 8px; }
+  .dropdown ul li a::before { content: '—'; font-size: 9px; font-family: 'DM Sans', sans-serif; color: var(--sand); transition: color 0.2s; }
+  .dropdown ul li a:hover { color: var(--sage); }
+  .dropdown ul li a:hover::before { color: var(--sage); }
+  .nav-right { display: flex; gap: 20px; align-items: center; flex-shrink: 0; }
+  .nav-right a { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bark); text-decoration: none; transition: color 0.25s; font-weight: 300; }
+  .nav-right a:hover { color: var(--sage); }
+
+
+  footer { background: var(--bark); padding: 72px 60px 40px; color: var(--cream); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+  .footer-logo { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; letter-spacing: 0.3em; text-transform: uppercase; color: var(--cream); margin-bottom: 14px; }
+  .footer-tagline { font-size: 12px; line-height: 1.9; color: rgba(250,247,242,0.4); max-width: 230px; margin-bottom: 28px; font-weight: 300; }
+  .footer-socials { display: flex; gap: 18px; }
+  .footer-socials a { font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(250,247,242,0.35); text-decoration: none; transition: color 0.3s; }
+  .footer-socials a:hover { color: var(--blush); }
+  .footer-col-title { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sage-mid); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid rgba(250,247,242,0.07); }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 12px; color: rgba(250,247,242,0.45); text-decoration: none; transition: color 0.25s; font-weight: 300; }
+  .footer-col ul li a:hover { color: var(--cream); }
+  .footer-bottom { border-top: 1px solid rgba(250,247,242,0.07); padding-top: 26px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { font-size: 10px; color: rgba(250,247,242,0.22); letter-spacing: 0.06em; }
+  .footer-legal { display: flex; gap: 22px; }
+  .footer-legal a { font-size: 10px; color: rgba(250,247,242,0.22); text-decoration: none; transition: color 0.3s; }
+  .footer-legal a:hover { color: rgba(250,247,242,0.55); }
+
+
+  .page-header { padding: 60px 60px 40px; border-bottom: 1px solid var(--sand); }
+  .page-breadcrumb { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--stone); margin-bottom: 14px; }
+  .page-breadcrumb a { color: var(--stone); text-decoration: none; }
+  .page-breadcrumb a:hover { color: var(--sage); }
+  .page-title { font-family: 'Bodoni Moda', serif; font-size: clamp(32px, 4vw, 56px); font-weight: 300; letter-spacing: 0.04em; color: var(--bark); margin-bottom: 12px; }
+  .page-desc { font-size: 13px; line-height: 2; color: var(--stone); max-width: 520px; font-weight: 300; }
+  .page-count { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--stone); margin-top: 20px; }
+  .product-section { padding: 60px 60px 80px; }
+  .product-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+  .product-card { background: var(--cream); position: relative; cursor: pointer; }
+  .product-image { position: relative; overflow: hidden; aspect-ratio: 4/5; background: var(--light-sand); }
+  .product-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .product-card:hover .product-image img { transform: scale(1.05); }
+  .product-tag { position: absolute; top: 14px; left: 14px; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 10px; font-weight: 300; z-index: 2; }
+  .tag-sage { background: var(--sage); color: var(--sage-pale); }
+  .tag-blush { background: var(--blush-deep); color: #fff; }
+  .tag-camel { background: var(--camel); color: #fff; }
+  .product-brand { position: absolute; top: 14px; right: 14px; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; background: rgba(250,247,242,0.88); color: var(--stone); padding: 4px 8px; }
+  .product-overlay { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; padding: 18px; opacity: 0; transition: opacity 0.35s; background: rgba(46,32,24,0.1); }
+  .product-card:hover .product-overlay { opacity: 1; }
+  .btn-shop { display: inline-block; width: 100%; text-align: center; padding: 13px 16px; background: var(--sage); color: var(--sage-pale); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; font-weight: 300; transition: background 0.3s; }
+  .btn-shop:hover { background: var(--bark); }
+  .product-info { padding: 16px 16px 20px; border-bottom: 1px solid var(--light-sand); }
+  .product-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+  .product-source { font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sage-mid); font-weight: 300; }
+  .product-price { font-size: 12px; color: var(--camel); letter-spacing: 0.02em; }
+  .product-name { font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 300; letter-spacing: 0.04em; color: var(--bark); line-height: 1.4; }
+  .product-note { font-size: 11px; color: var(--stone); margin-top: 4px; line-height: 1.6; font-weight: 300; }
+
+</style>
+</head>
+<body>
+
+<div class="announcement">New arrivals every Thursday — Curated for the considered woman</div>
+<nav>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li>
+        <a href="index.html">Homeware <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <p class="dropdown-label">Homeware</p>
+          <ul>
+            <li><a href="tableware.html">Tableware</a></li>
+            <li><a href="linens.html">Linens</a></li>
+            <li><a href="kids.html">Kids Room</a></li>
+            <li><a href="living-room.html">Living Room</a></li>
+            <li><a href="kitchen.html">Kitchen</a></li>
+            <li><a href="lighting.html">Lighting</a></li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <a href="#">Fashion <span class="caret">▾</span></a>
+        <div class="dropdown">
+          <p class="dropdown-label">Fashion</p>
+          <ul>
+            <li><a href="#">Coats</a></li>
+            <li><a href="#">Skirts</a></li>
+            <li><a href="#">Shorts</a></li>
+            <li><a href="#">Shirts</a></li>
+            <li><a href="#">Dresses</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+    <a href="index.html" class="logo">The Quiet Edit</a>
+    <div class="nav-right">
+      <a href="#">Search</a>
+      <a href="#">Saved</a>
+      <a href="#">About</a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <p class="page-breadcrumb"><a href="index.html">Home</a> &nbsp;/&nbsp; Tableware</p>
+  <h1 class="page-title">Tableware</h1>
+  <p class="page-desc">Objects for the table that make every meal feel considered. From ceramics to linen.</p>
+  <p class="page-count">4 pieces</p>
+</div>
+<section class="product-section">
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.minimalindian.com/cdn/shop/files/ditsyquarter2.jpg?v=1738474344" alt="Ditsy Quarter Plates (Set of 2)" loading="lazy"/>
+        <span class="product-tag tag-sage">Editor's Pick</span>
+        <span class="product-brand">Minimal Indian</span>
+        <div class="product-overlay">
+          <a href="https://www.minimalindian.com/products/ditsy-quarter-plates?variant=45130127769754" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Plates</span>
+          <span class="product-price">₹1,590</span>
+        </div>
+        <p class="product-name">Ditsy Quarter Plates (Set of 2)</p>
+        <p class="product-note">Handcrafted ceramics with a quiet, considered print. Made in India.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.minimalindian.com/cdn/shop/files/Rabbit_Mug_1.jpg?v=1769598384" alt="Blue Rabbit Mugs (Set of 2)" loading="lazy"/>
+        <span class="product-tag tag-blush">New In</span>
+        <span class="product-brand">Minimal Indian</span>
+        <div class="product-overlay">
+          <a href="https://www.minimalindian.com/products/blue-rabbit-mugs-blue-set-of-2?variant=45440989921434" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Mugs</span>
+          <span class="product-price">₹2,190</span>
+        </div>
+        <p class="product-name">Blue Rabbit Mugs (Set of 2)</p>
+        <p class="product-note">Illustrated ceramic mugs with a gentle, handcrafted character.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.ellementry.com/cdn/shop/files/01Lifestyle_e7e55bca-9063-4510-8656-51d7ab5d0e45.jpg?v=1775803958" alt="Fryst Glass Carafe with Wooden Lid" loading="lazy"/>
+        
+        <span class="product-brand">Ellementry</span>
+        <div class="product-overlay">
+          <a href="https://www.ellementry.com/products/fryst-glass-carafe-with-wooden-lid-gstea2541" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Serveware</span>
+          <span class="product-price">₹1,267</span>
+        </div>
+        <p class="product-name">Fryst Glass Carafe with Wooden Lid</p>
+        <p class="product-note">Clean glass carafe with a wooden knob. For water, juice, or a slow morning.</p>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        <img src="https://www.ellementry.com/cdn/shop/products/cttea2758_00.jpg?v=1706523072" alt="Mellow Table Runner" loading="lazy"/>
+        
+        <span class="product-brand">Ellementry</span>
+        <div class="product-overlay">
+          <a href="https://www.ellementry.com/products/mellow-runner-cttea2758" class="btn-shop" target="_blank" rel="noopener">Shop Now →</a>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-meta">
+          <span class="product-source">Table Linen</span>
+          <span class="product-price">₹1,350</span>
+        </div>
+        <p class="product-name">Mellow Table Runner</p>
+        <p class="product-note">Textured runner with tassels in warm yellow. Sets a table without trying too hard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">The Quiet Edit</div>
+      <p class="footer-tagline">A curated selection of objects and garments for the considered woman. Discovered with care.</p>
+      <div class="footer-socials"><a href="#">Instagram</a><a href="#">Pinterest</a><a href="#">Newsletter</a></div>
+    </div>
+    <div class="footer-col"><p class="footer-col-title">Homeware</p><ul>
+      <li><a href="tableware.html">Tableware</a></li>
+      <li><a href="linens.html">Linens</a></li>
+      <li><a href="kids.html">Kids Room</a></li>
+      <li><a href="living-room.html">Living Room</a></li>
+      <li><a href="kitchen.html">Kitchen</a></li>
+      <li><a href="lighting.html">Lighting</a></li>
+    </ul></div>
+    <div class="footer-col"><p class="footer-col-title">Fashion</p><ul>
+      <li><a href="#">Coats</a></li><li><a href="#">Skirts</a></li>
+      <li><a href="#">Shorts</a></li><li><a href="#">Shirts</a></li><li><a href="#">Dresses</a></li>
+    </ul></div>
+    <div class="footer-col"><p class="footer-col-title">About</p><ul>
+      <li><a href="#">Our Story</a></li><li><a href="#">How We Choose</a></li>
+      <li><a href="#">The Journal</a></li><li><a href="#">Contact</a></li>
+      <li><a href="#">Affiliate Disclosure</a></li>
+    </ul></div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2026 The Quiet Edit. All rights reserved.</p>
+    <div class="footer-legal"><a href="#">Privacy Policy</a><a href="#">Terms</a><a href="#">Affiliate Disclosure</a></div>
+  </div>
+</footer>
+
+</body>
+</html>
